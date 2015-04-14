@@ -1,6 +1,6 @@
 fluidPage(
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "css/style.css")
+    tags$style(rel = "stylesheet", type = "text/css", href = "css/style.css")
     ),
   fluidRow(id="header",
            h2("Header")
