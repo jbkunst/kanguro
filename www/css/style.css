@@ -1,0 +1,31 @@
+body {
+  padding-top: 70px; /* cause navbar is fixed */
+  background-color: #FCFCFC;
+}
+
+/* fixing radiobuttons labels */
+#category > div > div > label > span:nth-child(4){
+  min-width: 300px;
+  padding-left: 20px;
+  top: -0.2px;
+  vertical-align: text-top;
+}
+
+/* grid product list */
+.prodbox {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .5s ease-in;
+}
+
+.prodbox:hover {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.prodboxinner {
+ padding: 5px; 
+}
