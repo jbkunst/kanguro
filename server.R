@@ -90,21 +90,20 @@ shinyServer(function(input, output, session) {
     products <- data_price()
     
     if(nrow(products)==0){
-      output <- tags$blockquote("Tidy data sets are all the same.",
-                                tags$i(class="fa fa-meh-o"),
-                                "Each messy data set is messy in its own way.",
-                                tags$small("Doña Kanguro")) %>% h2
+      output <- h2("No existen productos con este criterio de búsqueda", tags$i(class="fa fa-meh-o")) %>% 
+        tags$blockquote(tags$small("Doña Kanguro"))
     } else {     
       output <- llply(seq(nrow(products)), function(x){
         product_template_grid(products[x,])
         })
       
-      output <- do.call(function(...){ div(class="row-fluid", ...)}, output)
+      output <- do.call(function(...){ div(class="row-fluid", ..., tags$script("$(\".imgLiquid\").imgLiquid();"))}, output)
     }
     
     output
     
   })
+  
 })
 
 

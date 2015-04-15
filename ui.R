@@ -4,7 +4,8 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "css/material.min.css"),
     tags$link(rel = "stylesheet", href = "css/ripples.css"),
     tags$link(rel = "stylesheet", href = "css/style.css"),
-    tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+    tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"),
+    tags$link(rel = "stylesheet", href = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/css/imgLiquid.js.css")
     ),
   navbarPage(
     title = NULL, id = "navigabar",
@@ -53,5 +54,6 @@ fluidPage(
   fluidRow(id="footer", column(12, p(class="text-center", "Hola hola"))),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/material.min.js"),
+  tags$script(src = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/js/imgLiquid-min.js"),
   tags$script(src = "js/init.js")
 )

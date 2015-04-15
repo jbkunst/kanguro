@@ -29,9 +29,9 @@ product_template_grid <- function(x){
   # x <- sample_n(data, 1)
   
   column(3, class="prodbox", id = sprintf("prod_%s", x$id),
-         div(class="prodboxinner",
+         div(class="prodboxinner imgLiquid", style="height:300px;",
              img(class="imgthumb img-responsive center-block",
-                 src=sprintf("http://placehold.it/600x600&text=%s", x$name))
+                 src=x$image)
          ),
          div(class="prodboxinner",
              h5(x$name)
