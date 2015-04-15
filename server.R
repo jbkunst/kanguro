@@ -90,8 +90,7 @@ shinyServer(function(input, output, session) {
     products <- data_price()
     
     if(nrow(products)==0){
-      output <- h2("No existen productos con este criterio de búsqueda", tags$i(class="fa fa-meh-o")) %>% 
-        tags$blockquote(tags$small("Doña Kanguro"))
+      output <- template_info_quote("No existen productos con tales criterios de búsqueda.")
     } else {     
       output <- llply(seq(nrow(products)), function(x){
         product_template_grid(products[x,])

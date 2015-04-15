@@ -13,15 +13,11 @@ get_data_sample <- function(){
            name = as.character(labels) %>% to_title,
            category = as.character(level1) %>% to_title,
            description = as.character(level2)  %>% to_title,
-           details = text_sample(),
+           image = sprintf("http://placehold.it/200x200&text=%s", name),
            price = round(runif(nrow(.))*100)*100) %>%
-    select(id, name, category, price, description, details) %>%
+    select(id, name, category, price, description, image) %>%
     tbl_df   
   
-}
-
-text_sample <- function(){
-  "Bitters Helvetica whatever tousled, fanny pack roof party master cleanse paleo freegan iPhone sriracha. Williamsburg forage freegan narwhal leggings trust fund. Meditation freegan tote bag viral. Farm-to-table keytar biodiesel Schlitz paleo readymade, roof party retro lo-fi mumblecore Intelligentsia Banksy"
 }
 
 product_template_grid <- function(x){
@@ -29,21 +25,34 @@ product_template_grid <- function(x){
   # x <- sample_n(data, 1)
   
   column(3, class="prodbox", id = sprintf("prod_%s", x$id),
-         div(class="prodboxinner imgLiquid", style="height:300px;",
+         div(class="photocontent imgLiquid",
              img(class="imgthumb img-responsive center-block",
                  src=x$image)
          ),
          div(class="prodboxinner",
-             h5(x$name)
+             x$name  %>% h5()
          ),
          div(class="prodboxinner",
-             span(class="pull-left", price_format(x$price)),
-             span(class="pull-right", tags$i(class="fa fa-arrow-circle-right")),
+             x$price  %>% price_format %>% h5 %>% span(class="pull-left"),
+             tags$i(class="fa fa-arrow-circle-right") %>% h5 %>% span(class="pull-right"),
              div(class="clearfix")
              )
          )
 }
 
-simple_text_template <- function(...){
+template_simple_text <- function(...){
   h3(...)
 }
+
+template_info_quote <- function(text = "Este es un mensaje para informar",
+                                icon = tags$i(class="fa fa-info-circle"),
+                                type = c("info", "alert", "warning", "success")[1]){
+  
+  fluidRow(
+    column(12, class = sprintf("alert alert-dismissable alert-%s", type),
+           tags$button(type="button", class="close", 'data-dismiss'="alert", "x"),
+           icon, text)
+    )
+    
+}
+

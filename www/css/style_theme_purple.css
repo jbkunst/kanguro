@@ -1,0 +1,46 @@
+.col-theme{
+  color: #9C27B0;
+}
+
+.bg-theme{
+  background-color: #9C27B0;
+}
+
+/* navbar */ 
+.navbar.navbar, .navbar-default.navbar {
+  background-color: #9C27B0;
+}
+
+/* product list grid */
+.prodbox:hover {
+  background-color: #9C27B0;
+  color: white;
+}
+
+/* radio buttons material design */
+.radio label .circle {
+  border: 2px solid #9C27B0;
+}
+
+.radio label .check {
+  background-color: #9C27B0;
+}
+
+.radio input[type=radio]:checked~.circle, .radio-default input[type=radio]:checked~.circle {
+  border-color: #9C27B0;
+}
+
+.radio input[type=radio]:checked~.check, .radio-default input[type=radio]:checked~.check {
+  background-color:  #9C27B0;
+}
+
+/* iris slider shiny */
+.irs-bar {
+  border-top: #9C27B0;
+  border-bottom: #9C27B0;
+  background: #9C27B0
+}
+
+.irs-from, .irs-to, .irs-single {
+  background: #9C27B0;
+}
