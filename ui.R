@@ -7,8 +7,8 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
     ),
   navbarPage(
-    title = NULL,
-    position="fixed-top", inverse=FALSE,
+    title = NULL, id = "navigabar",
+    position="fixed-top", inverse=FALSE, fluid = TRUE,
     tabPanel(h5(strong("KanguroVentas")),
              fluidRow(
                column(12,

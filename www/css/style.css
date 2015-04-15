@@ -3,6 +3,11 @@ body {
   background-color: #FCFCFC;
 }
 
+.container {
+  width: 100%; /* shiny navbar is not fluid*/
+}
+
+
 /* fixing radiobuttons labels */
 #category > div > div > label > span:nth-child(4){
   min-width: 300px;

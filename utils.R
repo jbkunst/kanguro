@@ -1,4 +1,4 @@
-title <- function(...) stri_trans_totitle(...)
+to_title <- function(...) stri_trans_totitle(...)
 
 price_format <- function(x){
   paste("$", prettyNum(x, big.mark = "."))
@@ -10,9 +10,9 @@ get_data_sample <- function(){
   set.seed(1313)
   data <- Groceries@itemInfo %>%
     mutate(id = sample(nrow(.)),
-           name = as.character(labels) %>% title,
-           category = as.character(level1) %>% title,
-           description = as.character(level2)  %>% title,
+           name = as.character(labels) %>% to_title,
+           category = as.character(level1) %>% to_title,
+           description = as.character(level2)  %>% to_title,
            details = text_sample(),
            price = round(runif(nrow(.))*100)*100) %>%
     select(id, name, category, price, description, details) %>%
@@ -31,7 +31,7 @@ product_template_grid <- function(x){
   column(3, class="prodbox", id = sprintf("prod_%s", x$id),
          div(class="prodboxinner",
              img(class="imgthumb img-responsive center-block",
-                 src=sprintf("http://placehold.it/200x200&text=%s", x$name))
+                 src=sprintf("http://placehold.it/600x600&text=%s", x$name))
          ),
          div(class="prodboxinner",
              h5(x$name)
@@ -42,5 +42,8 @@ product_template_grid <- function(x){
              div(class="clearfix")
              )
          )
+}
 
+simple_text_template <- function(...){
+  h3(...)
 }

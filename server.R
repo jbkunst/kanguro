@@ -90,7 +90,10 @@ shinyServer(function(input, output, session) {
     products <- data_price()
     
     if(nrow(products)==0){
-      output <- simple_text_template("Mmm. There are no products with these characteristics.")
+      output <- tags$blockquote("Tidy data sets are all the same.",
+                                tags$i(class="fa fa-meh-o"),
+                                "Each messy data set is messy in its own way.",
+                                tags$small("Doña Kanguro")) %>% h2
     } else {     
       output <- llply(seq(nrow(products)), function(x){
         product_template_grid(products[x,])

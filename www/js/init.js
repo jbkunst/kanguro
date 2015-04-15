@@ -4,7 +4,11 @@ $(function() {
   
   $.material.init();
   
+  // Shiny dont give option to add class to navigation bar
   $(".navbar").addClass("navbar-material-purple");
+  
+  // 
+  
   
   $("#price_reset").click(function(){
     
