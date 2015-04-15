@@ -6,7 +6,7 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"),
     tags$link(rel = "stylesheet", href = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/css/imgLiquid.js.css"),
     tags$link(rel = "stylesheet", href = "css/style.css"),
-    tags$link(rel = "stylesheet", href = "css/style_theme_purple.css")
+    tags$link(rel = "stylesheet", href = "css/style_theme.css")
     ),
   navbarPage(
     title = NULL, id = "navigabar",

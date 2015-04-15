@@ -4,6 +4,7 @@ $(function() {
   
   $.material.init();
   
+  /* Reset prices */
   $("#price_reset").click(function(){
     
     console.log("I'm reset price! you click me! ah?");
@@ -13,5 +14,10 @@ $(function() {
     slider.update({ from: 0, to: slider.options.max });
     
   });
+  
+  /* disabling right click */
+  $('img').bind('contextmenu', function(e) {
+    return false;
+  }); 
     
 });
