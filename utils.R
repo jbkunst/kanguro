@@ -40,6 +40,42 @@ product_template_grid <- function(x){
          )
 }
 
+
+product_detail_template <- function(x){
+  
+  # x <- sample_n(data, 1)
+  
+  div(class="row-fluid",
+      column(4,
+             div(class="row-fluid",
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
+                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name)))
+             )
+      ),
+      column(8,
+             h3(x$name),
+             tags$dl(
+               tags$dt("Descripción"), tags$dd(x$description),
+               tags$dt("Stock"), tags$dd(x$stock)
+             ),
+             hr(),
+             div(class="row-fluid",
+                 column(6,
+                        tags$button(class="btn btn-success btn-lg", price_format(x$price))
+                 ),
+                 column(6,
+                        actionButton("addtocart", class="pull-right btn-success btn-lg hvr-buzz-out", prodid = x$id,
+                                     "  Add to cart", tags$i(class="fa fa-cart-plus"))
+                 )
+             )
+      )
+  )
+}
+
 template_simple_text <- function(...){
   h3(...)
 }

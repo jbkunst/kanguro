@@ -1,3 +1,6 @@
+# input <- list(category = "drinks", price_range = c(0, 100), sortby = "pl")
+# values <- list(prod_id = "prod_34", cart = c(1, 4, 5, 6, 6 ,6))
+
 shinyServer(function(input, output, session) {
   
   session$cart <- c()
@@ -6,7 +9,6 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$prod_id, {
     values$prod_id <- input$prod_id
-    updateTabsetPanel(session, "tabset", selected = "tabdetail")
   })
   
   observeEvent(input$addtocart, {
@@ -15,7 +17,6 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$makeorder, {
-    message("Logic here!")
     print(data_cart())
   })
   
@@ -26,8 +27,6 @@ shinyServer(function(input, output, session) {
     data_category <- data %>% filter(category == input$category)
     
     updateSliderInput(session, "price_range", min = 0, max = max(data_category$price))
-    
-    updateTabsetPanel(session, "tabset", selected = "tabcategory")
     
     data_category
     
@@ -97,6 +96,26 @@ shinyServer(function(input, output, session) {
         })
       
       output <- do.call(function(...){ div(class="row-fluid", ..., tags$script("$(\".imgLiquid\").imgLiquid();"))}, output)
+    }
+    
+    output
+    
+  })
+  
+  output$product_breadcrum <- renderUI({
+    ls <- list("Categoría", input$category, "Producto", data[data$id==str_extract(values$prod_id, "\\d+"), "name"])
+    output <- lapply(ls, tags$li)
+    output <- do.call(function(...){ tags$ol(class="breadcrumb", ...)}, output)
+    output
+  })
+  
+  output$product <- renderUI({
+    
+    if(!is.null(values$prod_id)){
+      product <- data_product()
+      output <- product_detail_template(product)
+    } else {
+      output <- div()
     }
     
     output

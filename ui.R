@@ -37,12 +37,13 @@ fluidPage(
                  br(),
                  hr(),
                  selectInput("sortby", "Ordenar",
-                             choices = c("Time: newly listed" = "tr", "Price: lowest first" = "pl", "Price: highest first" = "ph"),
-                             width = "100%")
+                             choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
+                             selectize = FALSE, width = "100%")
                ),
                column(width = 9, id = "contentbar", hr(),
-                      uiOutput("category_breadcrum"),
-                      uiOutput("category"))
+                      fluidRow(class="category", uiOutput("category_breadcrum"), uiOutput("category")),
+                      fluidRow(class="product", uiOutput("product_breadcrum"), uiOutput("product"))
+                      )
                )
              ),
     tabPanel(h5("Carrito"),
@@ -52,7 +53,7 @@ fluidPage(
              hr(),
              p("content contact"))
     ),
-  fluidRow(id="footer", column(12, p(class="text-center", "Hola hola"))),
+  fluidRow(id="footer", column(12, p(class="text-center", "Footer"))),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/material.min.js"),
   tags$script(src = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/js/imgLiquid-min.js"),
