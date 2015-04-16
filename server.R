@@ -5,12 +5,12 @@ shinyServer(function(input, output, session) {
   
   session$cart <- c()
   
-  values <- reactiveValues(cart = c())
+  values <- reactiveValues(cart = c(), prod_id = 1)
   
   observeEvent(input$prod_id, {
     values$prod_id <- input$prod_id
   })
-  
+
   observeEvent(input$addtocart, {
     session$cart  <- c(session$cart, isolate(str_extract(input$prod_id, "\\d+")))
     values$cart <- session$cart
@@ -58,7 +58,7 @@ shinyServer(function(input, output, session) {
   
   data_product <- reactive({
     
-    prod_id <- str_extract(values$prod_id ,"\\d+") %>% as.numeric
+    prod_id <- str_extract(input$prod_id ,"\\d+") %>% as.numeric
     
     product <- data %>% filter(id == prod_id)
     

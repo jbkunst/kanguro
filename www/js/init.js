@@ -17,32 +17,31 @@ $(function() {
   
   $("body").on("click", ".prodbox", function() {
     
-    console.log("I'm product! you click me! ah?");
+    console.log("I'm a product! you click me! ah?");
     
     console.log($(this).attr("id"));
     
-    Shiny.onInputChange("prod_id", $(this).attr("id"));
-    
     $(window).scrollTop(0);
     
-    $(".category").hide();
+    Shiny.onInputChange("prod_id", $(this).attr("id"));
     
-    $(".product").show();
-  
+    /*
+    $('.category').fadeOut(function(){
+      $('.product').fadeIn();
+    });
+    */
     
   });
   
   $("body").on("click", "#category > .shiny-options-group > .radio", function() {
-
-    $(".category").show();
     
-    $(".product").hide();
-    
+    console.log("I'm a category! you click me! ah?");
+    /*
+    $('.product').fadeOut(function(){
+       $('.category').fadeIn();
+    });
+    */
+      
   });
   
-  /* disabling right click */
-  $('img').bind('contextmenu', function(e) {
-    return false
-  }); 
-    
 });
