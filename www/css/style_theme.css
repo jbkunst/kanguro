@@ -44,3 +44,14 @@
 .irs-from, .irs-to, .irs-single {
   background: #9C27B0;
 }
+
+/* select inputs */
+.form-group .form-control:focus, .form-group-default .form-control:focus {
+  background-image: linear-gradient(#9C27B0,#9C27B0),linear-gradient(#d2d2d2,#d2d2d2);
+}
+
+
+select.form-control:focus, select.form-control.focus {
+  box-shadow: none;
+  border-color: #9C27B0;
+}
