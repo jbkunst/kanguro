@@ -4,6 +4,9 @@ $(function() {
   
   $.material.init();
   
+  /* Remove .navbar-header*/
+  $(".navbar-header").remove();
+  
   /* Reset prices */
   $("#price_reset").click(function(){
     
@@ -25,23 +28,29 @@ $(function() {
     
     Shiny.onInputChange("prod_id", $(this).attr("id"));
     
-    /*
-    $('.category').fadeOut(function(){
-      $('.product').fadeIn();
-    });
-    */
+    $("#tabset > li:nth-child(2) > a").tab("show");
     
+    $("#tabset > li:nth-child(2)").fadeIn();
+    
+  });
+  
+  /* Product Detail hide */
+  $("#tabset > li:nth-child(2)").fadeOut();
+    
+  $("#tabset > li:nth-child(1)").click(function(){
+    $("#tabset > li:nth-child(2)").fadeOut();
+  });
+  
+  $("#tabset > li:nth-child(3)").click(function(){
+    $("#tabset > li:nth-child(2)").fadeOut();
   });
   
   $("body").on("click", "#category > .shiny-options-group > .radio", function() {
     
     console.log("I'm a category! you click me! ah?");
-    /*
-    $('.product').fadeOut(function(){
-       $('.category').fadeIn();
-    });
-    */
-      
+    
+    $("#tabset > li:nth-child(2)").fadeOut()
+          
   });
   
 });

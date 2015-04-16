@@ -41,14 +41,15 @@ fluidPage(
                              selectize = FALSE, width = "100%")
                ),
                column(width = 9, id = "contentbar", hr(),
-                      fluidRow(class="category", uiOutput("category_breadcrum"), uiOutput("category")),
-                      fluidRow(class="product", uiOutput("product_breadcrum"), uiOutput("product"))
+                      tabsetPanel(
+                        id="tabset",
+                        tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("category")),
+                        tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("product")),
+                        tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("cart"))
+                        )
                       )
                )
              ),
-    tabPanel(h5("Carrito"),
-             hr(),
-             p("content cart")),
     tabPanel(h5("Acerca de Kanguro"),
              hr(),
              p("content contact"))

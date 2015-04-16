@@ -17,7 +17,14 @@ get_data_sample <- function(){
            price = round(runif(nrow(.))*100)*100) %>%
     select(id, name, category, price, description, image) %>%
     tbl_df   
-  
+}
+
+get_data_real <- function(){
+  data <- register_ss("KanguroProds") %>%
+    get_via_csv() %>%
+    mutate(name = to_title(name),
+           category = to_title(category)) %>%
+    tbl_df
 }
 
 product_template_grid <- function(x){
@@ -40,7 +47,6 @@ product_template_grid <- function(x){
          )
 }
 
-
 product_detail_template <- function(x){
   
   # x <- sample_n(data, 1)
@@ -59,7 +65,7 @@ product_detail_template <- function(x){
       column(8,
              h3(x$name),
              tags$dl(
-               tags$dt("Descripción"), tags$dd(x$description),
+               tags$dt("DescripciÃ³n"), tags$dd(x$description),
                tags$dt("Stock"), tags$dd(x$stock)
              ),
              hr(),
@@ -85,7 +91,7 @@ template_info_quote <- function(text = "Este es un mensaje para informar",
                                 type = c("info", "alert", "warning", "success")[1]){
   
   fluidRow(
-    column(12, class = sprintf("alert alert-dismissable alert-%s", type),
+    column(8, offset = 2, class = sprintf("alert alert-dismissable alert-%s", type),
            tags$button(type="button", class="close", 'data-dismiss'="alert", "x"),
            icon, text)
     )

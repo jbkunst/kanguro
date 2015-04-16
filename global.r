@@ -9,7 +9,4 @@ library("googlesheets")
 source("utils.R")
 
 data <- get_data_sample()
-data <- register_ss("KanguroProds") %>% get_via_csv()
-data <- data %>% 
-  mutate(name = to_title(name),
-         category = to_title(category))
+data <- get_data_real()

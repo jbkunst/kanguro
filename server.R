@@ -9,6 +9,7 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$prod_id, {
     values$prod_id <- input$prod_id
+    updateTabsetPanel(session, "tabset", selected = "tabdetail")
   })
 
   observeEvent(input$addtocart, {
@@ -27,6 +28,8 @@ shinyServer(function(input, output, session) {
     data_category <- data %>% filter(category == input$category)
     
     updateSliderInput(session, "price_range", min = 0, max = max(data_category$price))
+    
+    updateTabsetPanel(session, "tabset", selected = "tabcategory")
     
     data_category
     
@@ -76,14 +79,20 @@ shinyServer(function(input, output, session) {
     data_cart
   })
   
-  #### TabPanels
-  output$category_breadcrum <- renderUI({
-    ls <- list("Categoría", input$category)
-    output <- lapply(ls, tags$li)
-    output <- do.call(function(...){ tags$ol(class="breadcrumb", ...)}, output)
-    output
+  #### Titles tabpanel ####
+  output$tabcategorytitle <- renderUI({
+    list(input$category, tags$small("(", nrow(data_price()),")"))
   })
   
+  output$detailtabtitle <- renderUI({
+    list(data_product()$name)
+  })
+  
+  output$carttabtitle <- renderUI({
+    list("Mi carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(session$cart), ")"))
+  })
+  
+  #### TabPanels
   output$category <- renderUI({
     
     products <- data_price()
@@ -97,16 +106,7 @@ shinyServer(function(input, output, session) {
       
       output <- do.call(function(...){ div(class="row-fluid", ..., tags$script("$(\".imgLiquid\").imgLiquid();"))}, output)
     }
-    
-    output
-    
-  })
-  
-  output$product_breadcrum <- renderUI({
-    ls <- list("Categoría", input$category, "Producto", data[data$id==str_extract(values$prod_id, "\\d+"), "name"])
-    output <- lapply(ls, tags$li)
-    output <- do.call(function(...){ tags$ol(class="breadcrumb", ...)}, output)
-    output
+    output 
   })
   
   output$product <- renderUI({
@@ -117,9 +117,18 @@ shinyServer(function(input, output, session) {
     } else {
       output <- div()
     }
-    
     output
+  })
+  
+  output$cart <- renderUI({
     
+    if(length(values$cart)==0){
+      output <- template_info_quote("todavía no hechas nada al carrito!")
+    } else {     
+      dcart <- data_cart()
+      output <- cart_template(dcart)
+    }
+    output
   })
   
 })

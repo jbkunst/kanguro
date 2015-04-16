@@ -7,6 +7,16 @@ body {
   width: 100%; /* shiny navbar is not fluid*/
 }
 
+/* cart pill to right*/
+#tabset > li:nth-child(3) {
+  float: right!important;
+}
+
+#tabset > li:nth-child(2) {
+  display: none;
+}
+
+
 
 /* fixing radiobuttons labels */
 #category > div > div > label > span:nth-child(4){
