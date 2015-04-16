@@ -16,7 +16,18 @@ body {
   display: none;
 }
 
+#footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: rgba(255,255,255,.84);
+  padding: 10px 10px;
+}
 
+#footertext {
+  margin: 0px;
+  padding: 5px;
+}
 
 /* fixing radiobuttons labels */
 #category > div > div > label > span:nth-child(4){

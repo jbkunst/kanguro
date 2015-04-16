@@ -52,9 +52,12 @@ fluidPage(
              ),
     tabPanel(h5("Acerca de Kanguro"),
              hr(),
-             p("content contact"))
+             p("content contact")
+             )
     ),
-  fluidRow(id="footer", column(12, p(class="text-center", "Footer"))),
+  fluidRow(id="footer", class="bg-theme",
+           column(12, p(id="footertext", class = "text-center","Diseño por Joshua Kunst | Powered by Rstudio"))
+           ),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/material.min.js"),
   tags$script(src = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/js/imgLiquid-min.js"),
