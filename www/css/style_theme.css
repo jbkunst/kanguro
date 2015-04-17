@@ -14,8 +14,14 @@
 
 /* product list grid */
 .prodbox:hover {
-  background-color: #9C27B0;
+  background-color: #ba68c8;
   color: white;
+}
+
+/* footer */
+#footer{
+  background-color: #4a148c;
+  color: rgba(255,255,255,.84);
 }
 
 /* radio buttons material design */

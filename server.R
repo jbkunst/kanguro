@@ -7,6 +7,7 @@ shinyServer(function(input, output, session) {
   
   values <- reactiveValues(cart = c(), prod_id = 1)
   
+  #### Observe events
   observeEvent(input$prod_id, {
     values$prod_id <- input$prod_id
     updateTabsetPanel(session, "tabset", selected = "tabdetail")
@@ -108,7 +109,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$carttabtitle <- renderUI({
-    list("Mi carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(session$cart), ")"))
+    list("Mi carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(values$cart), ")"))
   })
   
   #### TabPanels
@@ -136,18 +137,18 @@ shinyServer(function(input, output, session) {
     } else {
       output <- div()
     }
-    output
+    list(output, tags$script("$.material.init();"))
   })
   
   output$cart <- renderUI({
     
     if(length(values$cart)==0){
-      output <- template_info_quote("todavía no hechas nada al carrito!")
+      output <- template_info_quote("Todavía no hechas nada al carrito!")
     } else {     
       dcart <- data_cart()
       output <- cart_template(dcart)
     }
-    output
+    list(output, tags$script("$.material.init();"))
   })
   
 })

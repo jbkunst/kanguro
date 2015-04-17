@@ -24,6 +24,7 @@ get_data_real <- function(){
     get_via_csv(fileEncoding = "UTF-8") %>%
     mutate(name = to_title(name),
            category = to_title(category)) %>%
+    filter(!is.na(name)) %>%    
     tbl_df
 }
 
@@ -96,5 +97,52 @@ template_info_quote <- function(text = "Este es un mensaje para informar",
            icon, text)
     )
     
+}
+
+cart_template <- function(dcart){
+  
+  cart_total <- dcart$subtotal %>% sum %>% price_format
+  
+  products_template_tr <- llply(seq(nrow(dcart)), function(y){
+    x <- dcart[y,]
+    tags$tr(
+      tags$td(class="text-center",
+              img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/40x40&text=%s", x$name))),
+      tags$td(x$product),
+      tags$td(class="text-right", x$price),
+      tags$td(class="text-right", x$amount),
+      tags$td(class="text-right", x$subtotal_format)
+    )
+  })
+  
+  products_template_tr <- do.call(function(...){ tags$tbody(...)},  products_template_tr)
+  
+  div(class="row-fluid",
+      div(class="table-responsive",
+          tags$table(class="table table-hover",
+                     tags$thead(
+                       tags$tr(
+                         tags$th(),
+                         tags$th("Producto"),
+                         tags$th(class="text-right", "Precio"),
+                         tags$th(class="text-right", "Cantidad"),
+                         tags$th(class="text-right", "Subtotal")
+                       )
+                     ),
+                     products_template_tr,
+                     tags$tfoot(
+                       tags$tr(
+                         tags$th(),
+                         tags$th(),
+                         tags$th(),
+                         tags$th(class="text-right", "Total"),
+                         tags$th(class="text-right", cart_total)
+                       )
+                     )
+          )
+      ),
+      actionButton("checkout", class="pull-right btn-success btn-material-green",
+                   "  Realizar compra", tags$i(class="fa fa-money"))
+  )
 }
 

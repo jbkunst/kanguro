@@ -1,17 +1,17 @@
 fluidPage(
   tags$head(
+    tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"),
     tags$link(rel = "stylesheet", href = "css/roboto.min.css"),
     tags$link(rel = "stylesheet", href = "css/material.min.css"),
     tags$link(rel = "stylesheet", href = "css/ripples.css"),
-    tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"),
-    tags$link(rel = "stylesheet", href = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/css/imgLiquid.js.css"),
+    tags$link(rel = "stylesheet", href = "css/imgLiquid.js.css"),
     tags$link(rel = "stylesheet", href = "css/style.css"),
     tags$link(rel = "stylesheet", href = "css/style_theme.css")
     ),
   navbarPage(
-    title = NULL, id = "navigabar",
-    position="fixed-top", inverse=FALSE, fluid = TRUE,
-    tabPanel(h5(strong("KanguroVentas")),
+    title = "KanguroVentas", id = "navigabar",
+    position="fixed-top", fluid = TRUE, collapsible = TRUE,
+    tabPanel(h5("Inicio"),
              fluidRow(
                column(12,
                       hr(),
@@ -29,14 +29,14 @@ fluidPage(
                column(
                  width = 3, id = "filters",
                  hr(),
-                 radioButtons("category", "Categorías", choices = unique(data$category)),
+                 radioButtons("category", "CategorÃ­as", choices = unique(data$category)),
                  hr(),
                  sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
                  actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
                  br(),
                  br(),
                  hr(),
-                 selectInput("sortby", "Ordenar según", choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
+                 selectInput("sortby", "Ordenar segÃºn", choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
                              selectize = FALSE, width = "100%"),
                  hr(),
                  textInput("keywords", "Palabras claves"),
@@ -44,7 +44,7 @@ fluidPage(
                ),
                column(width = 9, id = "contentbar", hr(),
                       tabsetPanel(
-                        id="tabset",
+                        id="tabset", type = "pills",
                         tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("category")),
                         tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("product")),
                         tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("cart"))
@@ -52,16 +52,13 @@ fluidPage(
                       )
                )
              ),
-    tabPanel(h5("Acerca de Kanguro"),
-             hr(),
-             p("content contact")
-             )
+    tabPanel(h5("Acerca"), hr(), p("content contact"))
     ),
-  fluidRow(id="footer", class="bg-theme",
-           column(12, p(id="footertext", class = "text-center","Diseño por Joshua Kunst | Powered by Rstudio"))
+  fluidRow(id="footer",
+           column(12, p(id="footertext", class = "text-center","Joshua Kunst 2015"))
            ),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/material.min.js"),
-  tags$script(src = "http://www.jqueryscript.net/demo/Resize-Images-To-Fit-In-A-Container-imgLiquid/src/js/imgLiquid-min.js"),
+  tags$script(src = "js/imgLiquid-min.js"),
   tags$script(src = "js/init.js")
 )

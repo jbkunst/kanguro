@@ -12,30 +12,8 @@ body {
   float: right!important;
 }
 
-/* text input 100% width */
-.shiny-input-container:not(.shiny-input-container-inline) {
-  width: 100%;
-}
-
-#keyword{
-  width: 100%;
-}
-
 #tabset > li:nth-child(2) {
   display: none;
-}
-
-#footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: rgba(255,255,255,.84);
-  padding: 10px 10px;
-}
-
-#footertext {
-  margin: 0px;
-  padding: 5px;
 }
 
 /* fixing radiobuttons labels */
@@ -44,6 +22,15 @@ body {
   padding-left: 20px;
   top: -0.2px;
   vertical-align: text-top;
+}
+
+/* table vertical alling */
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+/* navbar brand */
+.navbar-brand{
+  padding-top: 22px;
 }
 
 /* grid product list */
