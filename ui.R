@@ -29,16 +29,18 @@ fluidPage(
                column(
                  width = 3, id = "filters",
                  hr(),
-                 radioButtons("category", NULL, choices = unique(data$category)),
+                 radioButtons("category", "Categorías", choices = unique(data$category)),
                  hr(),
                  sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
                  actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
                  br(),
                  br(),
                  hr(),
-                 selectInput("sortby", "Ordenar",
-                             choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
-                             selectize = FALSE, width = "100%")
+                 selectInput("sortby", "Ordenar según", choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
+                             selectize = FALSE, width = "100%"),
+                 hr(),
+                 textInput("keywords", "Palabras claves"),
+                 actionButton("keywords_reset", "limpiar palabras", class = "btn-xs small pull-right btn-material-purple")
                ),
                column(width = 9, id = "contentbar", hr(),
                       tabsetPanel(
@@ -56,7 +58,7 @@ fluidPage(
              )
     ),
   fluidRow(id="footer", class="bg-theme",
-           column(12, p(id="footertext", class = "text-center","DiseÃ±o por Joshua Kunst | Powered by Rstudio"))
+           column(12, p(id="footertext", class = "text-center","Diseño por Joshua Kunst | Powered by Rstudio"))
            ),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/material.min.js"),

@@ -12,6 +12,15 @@ body {
   float: right!important;
 }
 
+/* text input 100% width */
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
+}
+
+#keyword{
+  width: 100%;
+}
+
 #tabset > li:nth-child(2) {
   display: none;
 }

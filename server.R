@@ -1,4 +1,4 @@
-# input <- list(category = "drinks", price_range = c(0, 100), sortby = "pl")
+# input <- list(category = "Accesorios", price_range = c(0, 100), sortby = "pl", "keyword" = "aro")
 # values <- list(prod_id = "prod_34", cart = c(1, 4, 5, 6, 6 ,6))
 
 shinyServer(function(input, output, session) {
@@ -21,6 +21,14 @@ shinyServer(function(input, output, session) {
     print(data_cart())
   })
   
+  observeEvent(input$price_reset, {
+    data_category <- data %>% filter(category == input$category)
+    updateSliderInput(session, "price_range", value = c(0, max(data_category$price)))
+  })
+  
+  observeEvent(input$keywords_reset, {
+    updateTextInput(session, "keywords", value = "")
+  })
   
   #### Reactive Datas
   data_category <- reactive({
@@ -56,6 +64,17 @@ shinyServer(function(input, output, session) {
     data_price <- data_price %>% filter(price %>% between(input$price_range[1], input$price_range[2]))
     
     data_price
+    
+  })
+  
+  data_keyword <- reactive({
+
+    data_keyword <- data_price()
+    
+    data_keyword <- data_keyword %>% filter(grepl(tolower(input$keywords), tolower(name)) | grepl(tolower(input$keywords), tolower(description)))
+
+    
+    data_keyword
     
   })
   
@@ -95,7 +114,7 @@ shinyServer(function(input, output, session) {
   #### TabPanels
   output$category <- renderUI({
     
-    products <- data_price()
+    products <- data_keyword()
     
     if(nrow(products)==0){
       output <- template_info_quote("No existen productos con tales criterios de búsqueda.")

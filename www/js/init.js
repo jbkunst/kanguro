@@ -7,17 +7,6 @@ $(function() {
   /* Remove .navbar-header*/
   $(".navbar-header").remove();
   
-  /* Reset prices */
-  $("#price_reset").click(function(){
-    
-    console.log("I'm reset price! you click me! ah?");
-    
-    var slider = $("#price_range").data("ionRangeSlider");
-    
-    slider.update({ from: 0, to: slider.options.max });
-    
-  });
-  
   $("body").on("click", ".prodbox", function() {
     
     console.log("I'm a product! you click me! ah?");
@@ -52,5 +41,22 @@ $(function() {
     $("#tabset > li:nth-child(2)").fadeOut()
           
   });
+  
+  /* Reset keywords
+  $("#keyword_reset").click(function(){
+    
+  });
+  
+  Reset prices 
+  $("#price_reset").click(function(){
+    
+    console.log("I'm reset price! you click me! ah?");
+    
+    var slider = $("#price_range").data("ionRangeSlider");
+    
+    slider.update({ from: 0, to: slider.options.max });
+    
+  });
+  */
   
 });

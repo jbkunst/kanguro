@@ -21,7 +21,7 @@ get_data_sample <- function(){
 
 get_data_real <- function(){
   data <- register_ss("KanguroProds") %>%
-    get_via_csv() %>%
+    get_via_csv(fileEncoding = "UTF-8") %>%
     mutate(name = to_title(name),
            category = to_title(category)) %>%
     tbl_df
@@ -65,7 +65,7 @@ product_detail_template <- function(x){
       column(8,
              h3(x$name),
              tags$dl(
-               tags$dt("Descripción"), tags$dd(x$description),
+               tags$dt("Descripcion"), tags$dd(x$description),
                tags$dt("Stock"), tags$dd(x$stock)
              ),
              hr(),
