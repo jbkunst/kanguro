@@ -28,6 +28,14 @@ body {
 .table > tbody > tr > td {
   vertical-align: middle;
 }
+
+/* fix width text input */
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
+  max-width: 100%;
+}
+
+
 /* navbar brand */
 .navbar-brand{
   padding-top: 22px;

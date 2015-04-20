@@ -11,14 +11,12 @@ $(function() {
     console.log("I'm a product! you click me! ah?");
     
     console.log($(this).attr("id"));
-
-    setTimeout(function(){
-      
-      Shiny.onInputChange("prod_id", $(this).attr("id"));
-      $("#tabset > li:nth-child(2) > a").tab("show");
-      $("#tabset > li:nth-child(2)").fadeIn();
-
-    }, 250);
+    
+    Shiny.onInputChange("prod_id", $(this).attr("id"));
+    
+    $("#tabset > li:nth-child(2) > a").tab("show");
+    
+    $("#tabset > li:nth-child(2)").fadeIn();
     
   });
   
