@@ -8,5 +8,5 @@ library("googlesheets")
 
 source("utils.R")
 
-data <- get_data_sample()
+# data <- get_data_sample()
 data <- get_data_real()

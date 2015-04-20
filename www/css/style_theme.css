@@ -3,8 +3,23 @@
 }
 
 .bg-theme{
+  /* 500 */
   background-color: #9C27B0;
   color: white;
+}
+
+/* footer */
+#footer{
+  /* 800 */
+  background-color: #6A1B9A;
+  padding-top: 10px;
+  color: rgba(255,255,255,.84);
+}
+
+#bottom{
+  /* 900 */
+  background-color: #4A148C;
+  height: 10px;
 }
 
 /* navbar */ 
@@ -14,14 +29,9 @@
 
 /* product list grid */
 .prodbox:hover {
-  background-color: #ba68c8;
+  /* 300 */
+  background-color: #BA68C8;
   color: white;
-}
-
-/* footer */
-#footer{
-  background-color: #4a148c;
-  color: rgba(255,255,255,.84);
 }
 
 /* radio buttons material design */
@@ -56,7 +66,6 @@
 .form-group .form-control:focus, .form-group-default .form-control:focus {
   background-image: linear-gradient(#9C27B0,#9C27B0),linear-gradient(#d2d2d2,#d2d2d2);
 }
-
 
 select.form-control:focus, select.form-control.focus {
   box-shadow: none;

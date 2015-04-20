@@ -1,4 +1,4 @@
-# input <- list(category = "Accesorios", price_range = c(0, 100), sortby = "pl", "keyword" = "aro")
+# input <- list(category = "Vestuario", price_range = c(0, 1000000), sortby = "pl", "keyword" = "aro")
 # values <- list(prod_id = "prod_34", cart = c(1, 4, 5, 6, 6 ,6))
 
 shinyServer(function(input, output, session) {
@@ -23,7 +23,7 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$price_reset, {
-    data_category <- data %>% filter(category == input$category)
+    data_category <- data_category()
     updateSliderInput(session, "price_range", value = c(0, max(data_category$price)))
   })
   
@@ -36,10 +36,12 @@ shinyServer(function(input, output, session) {
     
     data_category <- data %>% filter(category == input$category)
     
-    updateSliderInput(session, "price_range", min = 0, max = max(data_category$price))
+    updateSliderInput(session, "price_range",
+                      min = 0, max = max(data_category$price),
+                      value = c(0, max(data_category$price)))
     
     updateTabsetPanel(session, "tabset", selected = "tabcategory")
-    
+        
     data_category
     
   })
@@ -52,6 +54,10 @@ shinyServer(function(input, output, session) {
       data_sort <- data_sort  %>% arrange(price)
     } else if (input$sortby == "ph"){
       data_sort <- data_sort  %>% arrange(desc(price))
+    } else if (input$sortby == "lh"){
+      data_sort <- data_sort  %>% arrange(stock)
+    } else if (input$sortby == "sh"){
+      data_sort <- data_sort  %>% arrange(desc(stock))
     }
     
     data_sort
@@ -62,7 +68,8 @@ shinyServer(function(input, output, session) {
     
     data_price <- data_sort()
     
-    data_price <- data_price %>% filter(price %>% between(input$price_range[1], input$price_range[2]))
+    data_price <- data_price %>%
+      filter(price %>% between(input$price_range[1], input$price_range[2]))
     
     data_price
     
@@ -74,7 +81,6 @@ shinyServer(function(input, output, session) {
     
     data_keyword <- data_keyword %>% filter(grepl(tolower(input$keywords), tolower(name)) | grepl(tolower(input$keywords), tolower(description)))
 
-    
     data_keyword
     
   })
@@ -113,7 +119,7 @@ shinyServer(function(input, output, session) {
   })
   
   #### TabPanels
-  output$category <- renderUI({
+  output$categorytab <- renderUI({
     
     products <- data_keyword()
     
@@ -124,12 +130,12 @@ shinyServer(function(input, output, session) {
         product_template_grid(products[x,])
         })
       
-      output <- do.call(function(...){ div(class="row-fluid", ..., tags$script("$(\".imgLiquid\").imgLiquid();"))}, output)
+      output <- do.call(function(...){ div(class="row-fluid", ...)}, output)
     }
-    output 
+    list(output, tags$script("$(\".imgLiquid\").imgLiquid();"))
   })
   
-  output$product <- renderUI({
+  output$producttab <- renderUI({
     
     if(!is.null(values$prod_id)){
       product <- data_product()
@@ -140,7 +146,7 @@ shinyServer(function(input, output, session) {
     list(output, tags$script("$.material.init();"))
   })
   
-  output$cart <- renderUI({
+  output$carttab <- renderUI({
     
     if(length(values$cart)==0){
       output <- template_info_quote("Todavía no hechas nada al carrito!")

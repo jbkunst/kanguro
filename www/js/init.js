@@ -4,20 +4,41 @@ $(function() {
   
   $.material.init();
   
+  $(window).resize(function(){
+    
+    $(".imgLiquid").imgLiquid();
+    
+  });
+  
   $("body").on("click", ".prodbox", function() {
     
     $('body').animate({scrollTop:0}, '250', 'swing');
         
     console.log("I'm a product! you click me! ah?");
     
-    console.log($(this).attr("id"));
+    prod_id = $(this).attr("id").replace( /^\D+/g, '');
     
-    Shiny.onInputChange("prod_id", $(this).attr("id"));
+    console.log(prod_id);
+    
+    history.pushState(null, null, '?prod='+prod_id);
+    
+    Shiny.onInputChange("prod_id", prod_id);
     
     $("#tabset > li:nth-child(2) > a").tab("show");
     
     $("#tabset > li:nth-child(2)").fadeIn();
     
+  });
+  
+  
+  $("#category > div > div > label").click(function(){
+  
+    thiz = this
+    
+    category = thiz.getElementsByTagName("span")[2].innerHTML;
+    
+    history.pushState(null, null, '?category='+category);
+  
   });
   
   /* Product Detail hide */
@@ -31,6 +52,7 @@ $(function() {
     $("#tabset > li:nth-child(2)").fadeOut();
   });
   
+  $()
   
   /* https://github.com/twbs/bootstrap/issues/12852 */
   //Hamburger menu toggle

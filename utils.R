@@ -1,5 +1,15 @@
 to_title <- function(...) stri_trans_totitle(...)
 
+trim <- function(...) str_trim
+
+first_upper <- function(string){
+  paste(toupper(substring(string, 1, 1)),substring(string, 2, nchar(string)), sep = "")
+}
+
+str_rm_ws <- function(string){
+  gsub("\\s+", " ", string)
+}
+
 price_format <- function(x){
   paste("$", prettyNum(x, big.mark = "."))
 }
@@ -22,8 +32,15 @@ get_data_sample <- function(){
 get_data_real <- function(){
   data <- register_ss("KanguroProds") %>%
     get_via_csv(fileEncoding = "UTF-8") %>%
-    mutate(name = to_title(name),
-           category = to_title(category)) %>%
+    mutate(image = ifelse(is.na(image),
+                          sprintf("http://placehold.it/200x200&text=%s", name),
+                          image),
+           description = ifelse(is.na(description),
+                                "Sin descripción.",
+                                description)) %>%
+    mutate(name        = name         %>% to_title  %>% str_trim %>% str_rm_ws,
+           category    = category     %>% to_title  %>% str_trim %>% str_rm_ws,
+           description = description  %>% first_upper  %>% str_rm_ws) %>%
     filter(!is.na(name)) %>%    
     tbl_df
 }
@@ -32,7 +49,7 @@ product_template_grid <- function(x){
   
   # x <- sample_n(data, 1)
   
-  column(3, class="prodbox", id = sprintf("prod_%s", x$id),
+  column(4, class="prodbox", id = sprintf("prod_%s", x$id),
          div(class="photocontent imgLiquid",
              img(class="imgthumb img-responsive center-block",
                  src=x$image)
@@ -55,12 +72,7 @@ product_detail_template <- function(x){
   div(class="row-fluid",
       column(4,
              div(class="row-fluid",
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name))),
-                 column(6, img(class="imgthumb img-responsive", src=sprintf("http://placehold.it/200x200&text=%s", x$name)))
+                 column(12, img(class="imgthumb img-responsive", src=x$image))
              )
       ),
       column(8,

@@ -26,39 +26,42 @@ fluidPage(
     tabPanel(h5("Tienda"),
              fluidRow(
                id = "main",
-               column(
+               column(class = "clearfix",
                  width = 3, id = "filters",
                  hr(),
                  radioButtons("category", "Categorías", choices = unique(data$category)),
-                 hr(),
                  sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
                  actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
                  br(),
                  br(),
-                 hr(),
-                 selectInput("sortby", "Ordenar según", choices = c("Tiempo: Nuevos" = "tr", "Precio: Menor Precio" = "pl", "Precio: Mayor Precio" = "ph"),
-                             selectize = FALSE, width = "100%"),
-                 hr(),
+                 selectInput("sortby", "Ordenar según", selectize = FALSE, width = "100%",
+                             choices = c("Tiempo: Nuevos" = "tr",
+                                         "Precio: Menor Precio" = "pl",
+                                         "Precio: Mayor Precio" = "ph",
+                                         "Stock: Menor Stock" = "sl",
+                                         "Stock: Mayor Stock" = "sh")),
                  textInput("keywords", "Palabras claves"),
                  actionButton("keywords_reset", "limpiar palabras", class = "btn-xs small pull-right btn-material-purple")
                ),
                column(width = 9, id = "contentbar", hr(),
                       tabsetPanel(
                         id="tabset", type = "pills",
-                        tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("category")),
-                        tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("product")),
-                        tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("cart"))
+                        tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("categorytab")),
+                        tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("producttab")),
+                        tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
                         )
                       )
                )
              ),
-    tabPanel(h5("Acerca"), hr(), p("content contact"))
+    tabPanel(h5("Acerca"), hr(), p("content contact"), hr() )
     ),
-  fluidRow(id="footer",
-           column(12, p(id="footertext", class = "text-center","Joshua Kunst 2015"))
-           ),
-  tags$script(src = "js/ripples.min.js"),
-  tags$script(src = "js/material.min.js"),
+  fluidRow(
+    column(id="prefooter", class="bg-theme", 12, "hi!"),
+    column(id="footer", 12, p(class = "text-center","KanguroVentas | Joshua Kunst 2015")),
+    column(id="bottom", 12)
+    ),
   tags$script(src = "js/imgLiquid-min.js"),
+  tags$script(src = "js/material.min.js"),
+  tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/init.js")
 )
