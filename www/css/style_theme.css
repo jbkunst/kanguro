@@ -8,18 +8,19 @@
   color: white;
 }
 
-/* footer */
+#prefooter{
+  color: rgba(255,255,255,.84);
+}
+
 #footer{
   /* 800 */
   background-color: #6A1B9A;
-  padding-top: 10px;
   color: rgba(255,255,255,.84);
 }
 
 #bottom{
   /* 900 */
   background-color: #4A148C;
-  height: 10px;
 }
 
 /* navbar */ 

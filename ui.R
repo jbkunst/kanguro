@@ -8,46 +8,56 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "css/style.css"),
     tags$link(rel = "stylesheet", href = "css/style_theme.css")
     ),
-  navbarPage(
-    title = "KanguroVentas", id = "navigabar",
-    position="fixed-top", fluid = TRUE, collapsible = TRUE,
-    tabPanel(h5("Inicio"), hr(), p("inicio _inicio"), hr() ),
-    tabPanel(h5("Tienda"),
-             fluidRow(
-               id = "main",
-               column(class = "clearfix",
-                 width = 3, id = "filters",
-                 hr(),
-                 radioButtons("category", "Categorías", choices = unique(data$category)),
-                 sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
-                 actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
-                 br(),
-                 br(),
-                 selectInput("sortby", "Ordenar según", selectize = FALSE, width = "100%",
-                             choices = c("Tiempo: Nuevos" = "tr",
-                                         "Precio: Menor Precio" = "pl",
-                                         "Precio: Mayor Precio" = "ph",
-                                         "Stock: Menor Stock" = "sl",
-                                         "Stock: Mayor Stock" = "sh")),
-                 textInput("keywords", "Palabras claves"),
-                 actionButton("keywords_reset", "limpiar palabras", class = "btn-xs small pull-right btn-material-purple")
-               ),
-               column(width = 9, id = "contentbar", hr(),
-                      tabsetPanel(
-                        id="tabset", type = "pills",
-                        tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("categorytab")),
-                        tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("producttab")),
-                        tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
+  fluidRow(class="wrapper",
+    navbarPage(
+      title = "KanguroVentas", id = "navigabar",
+      position="fixed-top", fluid = TRUE, collapsible = TRUE,
+      tabPanel(h5("Inicio"), hr(), p("inicio _inicio"), hr()),
+      tabPanel(h5("Tienda"), hr(),
+               fluidRow(
+                 id = "main",
+                 column(class = "clearfix",
+                        width = 3, id = "filters",
+                        radioButtons("category", "Categorías", choices = unique(data$category)),
+                        sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
+                        actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
+                        br(),
+                        br(),
+                        selectInput("sortby", "Ordenar según", selectize = FALSE, width = "100%",
+                                    choices = c("Tiempo: Nuevos" = "tr",
+                                                "Precio: Menor Precio" = "pl",
+                                                "Precio: Mayor Precio" = "ph",
+                                                "Stock: Menor Stock" = "sl",
+                                                "Stock: Mayor Stock" = "sh")),
+                        textInput("keywords", "Palabras claves"),
+                        actionButton("keywords_reset", "limpiar palabras", class = "btn-xs small pull-right btn-material-purple")
+                 ),
+                 column(width = 9, id = "contentbar",
+                        tabsetPanel(
+                          id="tabset", type = "pills",
+                          tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("categorytab")),
+                          tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("producttab")),
+                          tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
                         )
-                      )
-               )
-             ),
-    tabPanel(h5("Acerca"), hr(), p("content contact"), hr() )
+                 )
+               ),
+               hr()
+      ),
+      tabPanel(h5("Acerca"), hr(), p("content contact"), hr() )
+      ),
+    div(class="push")
     ),
-  fluidRow(
-    column(id="prefooter", class="bg-theme", 12, "hi!"),
-    column(id="footer", 12, p(class = "text-center","KanguroVentas | Joshua Kunst 2015")),
-    column(id="bottom", 12)
+  fluidRow(class="site-footer",
+           column(id="prefooter", class="bg-theme text-right", 12,
+                  h4("Mantengamos Contacto"),
+                  h3(tags$i(class="fa fa-facebook"),
+                     tags$i(class="fa fa-twitter"),
+                     tags$i(class="fa fa-envelope"))
+                  ),
+           column(id="footer", 12,
+                  p(class = "text-center","KanguroVentas | Joshua Kunst 2015")
+                  ),
+           column(id="bottom", 12)
     ),
   tags$script(src = "js/imgLiquid-min.js"),
   tags$script(src = "js/material.min.js"),
