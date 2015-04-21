@@ -49,7 +49,7 @@ product_template_grid <- function(x){
   
   # x <- sample_n(data, 1)
   
-  column(4, class="prodbox", id = sprintf("prod_%s", x$id),
+  column(3, class="prodbox", id = sprintf("prod_%s", x$id),
          div(class="photocontent imgLiquid",
              img(class="imgthumb img-responsive center-block",
                  src=x$image)
@@ -88,7 +88,7 @@ product_detail_template <- function(x){
                  ),
                  column(6,
                         actionButton("addtocart", class="pull-right btn-success btn-lg hvr-buzz-out", prodid = x$id,
-                                     "  Add to cart", tags$i(class="fa fa-cart-plus"))
+                                     "  Agregar al Carrito", tags$i(class="fa fa-cart-plus"))
                  )
              )
       )

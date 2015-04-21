@@ -29,6 +29,7 @@ fluidPage(
                                                 "Precio: Mayor Precio" = "ph",
                                                 "Stock: Menor Stock" = "sl",
                                                 "Stock: Mayor Stock" = "sh")),
+                        br(),
                         textInput("keywords", "Palabras claves"),
                         actionButton("keywords_reset", "limpiar palabras", class = "btn-xs small pull-right btn-material-purple")
                  ),
@@ -49,10 +50,22 @@ fluidPage(
     ),
   fluidRow(class="site-footer",
            column(id="prefooter", class="bg-theme text-right", 12,
-                  h4("Mantengamos Contacto"),
-                  h3(tags$i(class="fa fa-facebook"),
-                     tags$i(class="fa fa-twitter"),
-                     tags$i(class="fa fa-envelope"))
+                  p("Mantengamos Contacto"),
+                  p(span(class="fa-stack fa-lg facebook icon",
+                          tags$i(class="fa fa-square fa-stack-2x"),
+                          tags$i(class="fa fa-facebook fa-stack-1x")
+                          ),
+                    "/kanguroVentas2"
+                    ),
+                  p(span(class="fa-stack fa-lg twitter icon",
+                          tags$i(class="fa fa-circle fa-stack-2x"),
+                          tags$i(class="fa fa-twitter fa-stack-1x")
+                          ),
+                     span(class="fa-stack fa-lg mail icon",
+                          tags$i(class="fa fa-circle fa-stack-2x"),
+                          tags$i(class="fa fa-envelope fa-stack-1x")
+                          )
+                     )
                   ),
            column(id="footer", 12,
                   p(class = "text-center","KanguroVentas | Joshua Kunst 2015")

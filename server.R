@@ -115,7 +115,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$carttabtitle <- renderUI({
-    list("Mi carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(values$cart), ")"))
+    list("Mi Carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(values$cart), ")"))
   })
   
   #### TabPanels
