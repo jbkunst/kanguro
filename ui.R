@@ -11,18 +11,7 @@ fluidPage(
   navbarPage(
     title = "KanguroVentas", id = "navigabar",
     position="fixed-top", fluid = TRUE, collapsible = TRUE,
-    tabPanel(h5("Inicio"),
-             fluidRow(
-               column(12,
-                      hr(),
-                      tags$a(href="#", class="btn btn-success", "Success"),
-                      tags$button(class="btn btn-fab btn-raised btn-material-green",
-                                  tags$i(class="mdi-action-add-shopping-cart"),
-                                  div(class="ripple-wrapper")),
-                      tags$a(class="btn btn-success btn-fab btn-raised mdi-action-grade")
-                      )
-               )
-             ),
+    tabPanel(h5("Inicio"), hr(), p("inicio _inicio"), hr() ),
     tabPanel(h5("Tienda"),
              fluidRow(
                id = "main",
