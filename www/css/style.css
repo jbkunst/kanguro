@@ -3,7 +3,7 @@ html {
   min-height: 100%;
 }
 body {
-  margin-bottom: 170px; /* Margin bottom by footer height */ /* 10 + 125 + 35 */
+  margin-bottom: 172px; /* Margin bottom by footer height */ /* 10 + 127 + 35 */
   padding-top: 70px; /* cause navbar is fixed */
   background-color: #FCFCFC;
 }
@@ -13,7 +13,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 170px; /* Set the fixed height of the footer here */
+  height: 172px; /* Set the fixed height of the footer here */
 }
 
 .container {
@@ -69,7 +69,7 @@ body {
 }
 
 .photocontent {
-  min-height: 250px;
+  height: 250px;
 }
 
 #prefooter{

@@ -52,12 +52,10 @@ fluidPage(
            column(id="prefooter", class="bg-theme text-right", 12,
                   p("Mantengamos Contacto"),
                   p(span(class="fa-stack fa-lg facebook icon",
-                          tags$i(class="fa fa-square fa-stack-2x"),
+                          tags$i(class="fa fa-circle fa-stack-2x"),
                           tags$i(class="fa fa-facebook fa-stack-1x")
                           ),
-                    "/kanguroVentas2"
-                    ),
-                  p(span(class="fa-stack fa-lg twitter icon",
+                    span(class="fa-stack fa-lg twitter icon",
                           tags$i(class="fa fa-circle fa-stack-2x"),
                           tags$i(class="fa fa-twitter fa-stack-1x")
                           ),
