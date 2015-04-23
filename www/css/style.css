@@ -2,6 +2,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin-bottom: 172px; /* Margin bottom by footer height */ /* 10 + 127 + 35 */
   padding-top: 70px; /* cause navbar is fixed */
@@ -51,6 +52,8 @@ body {
 /* navbar brand */
 .navbar-brand{
   padding-top: 22px;
+  font-family: "Princess Sofia", cursive;
+  font-size: 2em;
 }
 
 /* grid product list */

@@ -1,6 +1,7 @@
 fluidPage(
   tags$head(
     tags$link(rel = "stylesheet", href = "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"),
+    tags$link(rel = "stylesheet", href = "http://fonts.googleapis.com/css?family=Princess+Sofia"),
     tags$link(rel = "stylesheet", href = "css/roboto.min.css"),
     tags$link(rel = "stylesheet", href = "css/material.min.css"),
     tags$link(rel = "stylesheet", href = "css/ripples.css"),
