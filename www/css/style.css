@@ -50,10 +50,15 @@ body {
 }
 
 /* navbar brand */
-.navbar-brand{
+.navbar-brand {
   padding-top: 22px;
   font-family: "Princess Sofia", cursive;
   font-size: 2em;
+  
+}
+
+body > div > div.row.wrapper > nav > div > div.navbar-header > span {
+  color: #FFF;
 }
 
 /* grid product list */
