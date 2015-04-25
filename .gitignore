@@ -1,6 +1,7 @@
 *\.Rproj.user
 *\.Rhistory
-
+*\.httr-oauth
+.httr-oauth
 
 *\shinyapps\*
 .Rproj.user
