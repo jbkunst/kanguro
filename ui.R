@@ -13,7 +13,7 @@ fluidPage(
     navbarPage(
       title = "KanguroVentas", id = "navigabar",
       position="fixed-top", fluid = TRUE, collapsible = TRUE,
-      tabPanel(h5("Inicio"), hr(), p("inicio _inicio"), hr()),
+      tabPanel(h5("Inicio"), hr(), p("inicio _inicio")),
       tabPanel(h5("Tienda"), hr(),
                fluidRow(
                  id = "main",
@@ -42,10 +42,9 @@ fluidPage(
                           tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
                         )
                  )
-               ),
-               hr()
+               )
       ),
-      tabPanel(h5("Acerca"), hr(), p("content contact"), hr() )
+      tabPanel(h5("Acerca"), hr(), p("content contact"))
       ),
     div(class="push")
     ),
