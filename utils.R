@@ -30,8 +30,10 @@ get_data_sample <- function(){
 }
 
 get_data_real <- function(){
-  data <- register_ss("KanguroProds") %>%
-    get_via_csv(fileEncoding = "UTF-8") %>%
+#   data <- register_ss("KanguroProds") %>%
+#     get_via_csv(fileEncoding = "UTF-8") %>%
+  data  <- "https://docs.google.com/spreadsheets/d/1g7l4DOy_lyjAFSQaqzbZtOuTuh6x-vZCPIPAWfL0yJ0/export?format=csv&id=1g7l4DOy_lyjAFSQaqzbZtOuTuh6x-vZCPIPAWfL0yJ0&gid=0" %>% 
+    read_csv() %>% 
     mutate(image = ifelse(is.na(image),
                           sprintf("http://placehold.it/200x200&text=%s", name),
                           image),
