@@ -3,8 +3,6 @@
 
 shinyServer(function(input, output, session) {
   
-  data <- get_data_sample()
-  
   session$cart <- c()
   
   values <- reactiveValues(cart = c(), prod_id = 1)
