@@ -3,7 +3,7 @@
 
 shinyServer(function(input, output, session) {
   
-  data <- get_data_real()
+  data <- get_data_sample()
   
   session$cart <- c()
   
