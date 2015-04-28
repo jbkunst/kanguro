@@ -5,6 +5,8 @@ shinyServer(function(input, output, session) {
   
   session$cart <- c()
   
+  data <- get_data_real()
+  
   values <- reactiveValues(cart = c(), prod_id = 1)
   
   #### Observe events
