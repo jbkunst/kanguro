@@ -3,7 +3,7 @@ to_title <- function(...) stri_trans_totitle(...)
 trim <- function(...) str_trim
 
 first_upper <- function(string){
-  paste(toupper(substring(string, 1, 1)),substring(string, 2, nchar(string)), sep = "")
+  paste(toupper(substring(string, 1, 1)), substring(string, 2, nchar(string)), sep = "")
 }
 
 str_rm_ws <- function(string){
@@ -11,7 +11,7 @@ str_rm_ws <- function(string){
 }
 
 price_format <- function(x){
-  paste("$", prettyNum(x, big.mark = "."))
+  paste("$", prettyNum(x, big.mark = ".", decimal.mark = ","))
 }
 
 get_data_sample <- function(){

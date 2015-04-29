@@ -10,10 +10,10 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "css/style.css"),
     tags$link(rel = "stylesheet", href = "css/style_theme.css")
     ),
-  fluidRow(class="wrapper",
+  fluidRow(class = "wrapper",
     navbarPage(
       title = "KanguroVentas", id = "navigabar",
-      position="fixed-top", fluid = TRUE, collapsible = TRUE,
+      position = "fixed-top", fluid = TRUE, collapsible = TRUE,
       tabPanel(h5("Inicio"), hr(), uiOutput("home")),
       tabPanel(h5("Tienda"), hr(),
                fluidRow(
@@ -21,7 +21,7 @@ fluidPage(
                  column(class = "clearfix",
                         width = 3, id = "filters",
                         radioButtons("category", "Categorías", choices = categories),
-                        sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre="$", sep = ".", width = "100%"),
+                        sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre = "$", sep = ".", width = "100%"),
                         actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
                         br(),
                         br(),
@@ -37,39 +37,39 @@ fluidPage(
                  ),
                  column(width = 9, id = "contentbar",
                         tabsetPanel(
-                          id="tabset", type = "pills",
+                          id = "tabset", type = "pills",
                           tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("categorytab")),
                           tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("producttab")),
-                          tabPanel(uiOutput("carttabtitle"), id ="cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
+                          tabPanel(uiOutput("carttabtitle"), id = "cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
                         )
                  )
                )
       ),
       tabPanel(h5("Acerca"), hr(), p("content contact"))
       ),
-    div(class="push")
+    div(class = "push")
     ),
-  fluidRow(class="site-footer",
-           column(id="prefooter", class="bg-theme text-right", 12,
+  fluidRow(class = "site-footer",
+           column(id = "prefooter", class = "bg-theme text-right", 12,
                   p("Mantengamos Contacto"),
-                  p(span(class="fa-stack fa-lg facebook icon",
-                          tags$i(class="fa fa-circle fa-stack-2x"),
-                          tags$i(class="fa fa-facebook fa-stack-1x")
+                  p(span(class = "fa-stack fa-lg facebook icon",
+                          tags$i(class = "fa fa-circle fa-stack-2x"),
+                          tags$i(class = "fa fa-facebook fa-stack-1x")
                           ),
-                    span(class="fa-stack fa-lg twitter icon",
-                          tags$i(class="fa fa-circle fa-stack-2x"),
-                          tags$i(class="fa fa-twitter fa-stack-1x")
+                    span(class = "fa-stack fa-lg twitter icon",
+                          tags$i(class = "fa fa-circle fa-stack-2x"),
+                          tags$i(class = "fa fa-twitter fa-stack-1x")
                           ),
-                     span(class="fa-stack fa-lg mail icon",
-                          tags$i(class="fa fa-circle fa-stack-2x"),
-                          tags$i(class="fa fa-envelope fa-stack-1x")
+                     span(class = "fa-stack fa-lg mail icon",
+                          tags$i(class = "fa fa-circle fa-stack-2x"),
+                          tags$i(class = "fa fa-envelope fa-stack-1x")
                           )
                      )
                   ),
-           column(id="footer", 12,
-                  p(class = "text-center","KanguroVentas | Joshua Kunst 2015")
+           column(id = "footer", 12,
+                  p(class = "text-center", "KanguroVentas | Joshua Kunst 2015")
                   ),
-           column(id="bottom", 12)
+           column(id = "bottom", 12)
     ),
   tags$script(src = "js/imgLiquid-min.js"),
   tags$script(src = "js/material.min.js"),

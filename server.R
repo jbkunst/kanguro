@@ -109,20 +109,23 @@ shinyServer(function(input, output, session) {
   
   #### Home ####
   output$home <- renderUI({
-    div(class="main-gallery js-flickity",
-        div(class="gallery-cell col-md-12", "lasldalsda"),
-        div(class="gallery-cell col-md-12 bg-theme", "lasldalsdasda"),
-        div(class="gallery-cell col-md-12 col-theme", "lasldalsdaa"),
-        div(class="gallery-cell col-md-12", "lasldalsada"),
-        div(class="gallery-cell col-md-12 bg-theme", "lasldasadlsda"),
-        div(class="gallery-cell col-md-12", "asdasdasdasd")
-    )
     
+    output <- div(class = "main-gallery js-flickity fluid-row",
+                  div(class = "gallery-cell col-md-12",           style = "height:500px", "lasldalsda"),
+                  div(class = "gallery-cell col-md-12 bg-theme",  style = "height:500px", "lasldalsdasda"),
+                  div(class = "gallery-cell col-md-12 col-theme", style = "height:200px", "lasldalsdaa"),
+                  div(class = "gallery-cell col-md-12",           style = "height:500px", "lasldalsada"),
+                  div(class = "gallery-cell col-md-12 bg-theme",  style = "height:200px", "lasldasadlsda"),
+                  div(class = "gallery-cell col-md-12",           style = "height:500px", "asdasdasdasd")
+                  )
+    
+    list(output, tags$script("$('.main-gallery').flickity({cellAlign: 'left', contain: true, autoPlay: true});"))
+
   })
   
   #### Titles tabpanel ####
   output$tabcategorytitle <- renderUI({
-    list(input$category, tags$small("(", nrow(data_price()),")"))
+    list(input$category, tags$small("(", nrow(data_price()), ")"))
   })
   
   output$detailtabtitle <- renderUI({
@@ -130,7 +133,7 @@ shinyServer(function(input, output, session) {
   })
   
   output$carttabtitle <- renderUI({
-    list("Mi Carrito", tags$i(class="fa fa-shopping-cart"), tags$small("(", length(values$cart), ")"))
+    list("Mi Carrito", tags$i(class = "fa fa-shopping-cart"), tags$small("(", length(values$cart), ")"))
   })
   
   #### TabPanels

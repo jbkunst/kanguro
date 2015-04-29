@@ -23,7 +23,7 @@ body {
 
 /* cart pill to right*/
 #tabset > li:nth-child(3) {
-  float: right!important;
+  float: right;
 }
 
 #tabset > li:nth-child(2) {
@@ -73,7 +73,7 @@ body > div > div.row.wrapper > nav > div > div.navbar-header > span {
 }
 
 .prodboxinner {
-  padding: 0px; 
+  padding: 0; 
 }
 
 .photocontent {
