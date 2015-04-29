@@ -107,6 +107,19 @@ shinyServer(function(input, output, session) {
     data_cart
   })
   
+  #### Home ####
+  output$home <- renderUI({
+    div(class="main-gallery js-flickity",
+        div(class="gallery-cell col-md-12", "lasldalsda"),
+        div(class="gallery-cell col-md-12 bg-theme", "lasldalsdasda"),
+        div(class="gallery-cell col-md-12 col-theme", "lasldalsdaa"),
+        div(class="gallery-cell col-md-12", "lasldalsada"),
+        div(class="gallery-cell col-md-12 bg-theme", "lasldasadlsda"),
+        div(class="gallery-cell col-md-12", "asdasdasdasd")
+    )
+    
+  })
+  
   #### Titles tabpanel ####
   output$tabcategorytitle <- renderUI({
     list(input$category, tags$small("(", nrow(data_price()),")"))

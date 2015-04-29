@@ -6,6 +6,7 @@ fluidPage(
     tags$link(rel = "stylesheet", href = "css/material.min.css"),
     tags$link(rel = "stylesheet", href = "css/ripples.css"),
     tags$link(rel = "stylesheet", href = "css/imgLiquid.js.css"),
+    tags$link(rel = "stylesheet", href = "css/flickity.css"),
     tags$link(rel = "stylesheet", href = "css/style.css"),
     tags$link(rel = "stylesheet", href = "css/style_theme.css")
     ),
@@ -13,7 +14,7 @@ fluidPage(
     navbarPage(
       title = "KanguroVentas", id = "navigabar",
       position="fixed-top", fluid = TRUE, collapsible = TRUE,
-      tabPanel(h5("Inicio"), hr(), p("inicio _inicio")),
+      tabPanel(h5("Inicio"), hr(), uiOutput("home")),
       tabPanel(h5("Tienda"), hr(),
                fluidRow(
                  id = "main",
@@ -73,5 +74,6 @@ fluidPage(
   tags$script(src = "js/imgLiquid-min.js"),
   tags$script(src = "js/material.min.js"),
   tags$script(src = "js/ripples.min.js"),
+  tags$script(src = "js/flickity.pkgd.min.js"),
   tags$script(src = "js/init.js")
 )
