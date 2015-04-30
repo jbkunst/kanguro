@@ -75,5 +75,6 @@ fluidPage(
   tags$script(src = "js/material.min.js"),
   tags$script(src = "js/ripples.min.js"),
   tags$script(src = "js/flickity.pkgd.min.js"),
+  tags$script(src = "js/ramjet.js"),
   tags$script(src = "js/init.js")
 )

@@ -110,16 +110,21 @@ shinyServer(function(input, output, session) {
   #### Home ####
   output$home <- renderUI({
     
-    output <- div(class = "main-gallery js-flickity fluid-row",
-                  div(class = "gallery-cell col-md-12",           style = "height:500px", "lasldalsda"),
-                  div(class = "gallery-cell col-md-12 bg-theme",  style = "height:500px", "lasldalsdasda"),
-                  div(class = "gallery-cell col-md-12 col-theme", style = "height:200px", "lasldalsdaa"),
-                  div(class = "gallery-cell col-md-12",           style = "height:500px", "lasldalsada"),
-                  div(class = "gallery-cell col-md-12 bg-theme",  style = "height:200px", "lasldasadlsda"),
-                  div(class = "gallery-cell col-md-12",           style = "height:500px", "asdasdasdasd")
-                  )
-    
-    list(output, tags$script("$('.main-gallery').flickity({cellAlign: 'left', contain: true, autoPlay: true});"))
+    output <- fluidRow(
+      column(8,
+             div(class = "main-gallery js-flickity row",
+                 div(id = "cont1", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsda"),
+                 div(id = "cont2", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldalsdasda"),
+                 div(id = "cont3", class = "gallery-cell col-md-8 col-theme", style = "height:400px", "lasldalsdaa"),
+                 div(id = "cont4", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsada"),
+                 div(id = "cont5", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldasadlsda"),
+                 div(id = "cont6", class = "gallery-cell col-md-8",           style = "height:400px", "asdasdasdasd"),
+                 div(id = "cont7", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "last")
+                 )
+             )
+      )
+      
+    list(output, tags$script("$('.main-gallery').flickity({cellAlign: 'left', contain: true, autoPlay: true, resize: false, cellAlign: 'center', wrapAround: true});"))
 
   })
   
