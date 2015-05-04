@@ -6,4 +6,4 @@ library("stringi")
 library("readr")
 source("utils.R")
 
-categories <- get_data_real()$category %>% unique %>% sort
+categories <- get_data_real() %>% .$category %>% unique %>% sort
