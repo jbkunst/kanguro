@@ -40,7 +40,7 @@ fluidPage(
                           id = "tabset", type = "pills",
                           tabPanel(uiOutput("tabcategorytitle"), value = "tabcategory", hr(), uiOutput("categorytab")),
                           tabPanel(uiOutput("detailtabtitle"), value = "tabdetail", hr(), uiOutput("producttab")),
-                          tabPanel(uiOutput("carttabtitle"), id = "cartta," ,value = "tabcart",  hr(), uiOutput("carttab"))
+                          tabPanel(uiOutput("carttabtitle"), id = "cartta", value = "tabcart",  hr(), uiOutput("carttab"))
                         )
                  )
                )
