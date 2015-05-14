@@ -108,24 +108,38 @@ shinyServer(function(input, output, session) {
   })
   
   #### Home ####
-  output$home <- renderUI({
+  output$carrousel <- renderUI({
     
-    output <- fluidRow(
-      column(8,
-             div(class = "main-gallery js-flickity row",
-                 div(id = "cont1", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsda"),
-                 div(id = "cont2", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldalsdasda"),
-                 div(id = "cont3", class = "gallery-cell col-md-8 col-theme", style = "height:400px", "lasldalsdaa"),
-                 div(id = "cont4", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsada"),
-                 div(id = "cont5", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldasadlsda"),
-                 div(id = "cont6", class = "gallery-cell col-md-8",           style = "height:400px", "asdasdasdasd"),
-                 div(id = "cont7", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "last")
+    output <- div(class = "main-gallery js-flickity row",
+                  div(id = "cont1", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsda"),
+                  div(id = "cont2", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldalsdasda"),
+                  div(id = "cont3", class = "gallery-cell col-md-8 col-theme", style = "height:400px", "lasldalsdaa"),
+                  div(id = "cont4", class = "gallery-cell col-md-8",           style = "height:400px", "lasldalsada"),
+                  div(id = "cont5", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "lasldasadlsda"),
+                  div(id = "cont6", class = "gallery-cell col-md-8",           style = "height:400px", "asdasdasdasd"),
+                  div(id = "cont7", class = "gallery-cell col-md-8 bg-theme",  style = "height:400px", "last")
                  )
-             )
-      )
-      
     list(output, tags$script("$('.main-gallery').flickity({cellAlign: 'left', contain: true, autoPlay: true, resize: false, cellAlign: 'center', wrapAround: true});"))
 
+  })
+  
+  output$wc <- renderD3wordcloud({
+    
+    corpus <- Corpus(VectorSource(data$description))
+    
+    corpus <- corpus %>%
+      tm_map(removePunctuation) %>%
+      tm_map(function(x){ removeWords(x, stopwords(kind = "es")) })
+    
+    d <- TermDocumentMatrix(corpus) %>%
+      as.matrix() %>%
+      rowSums() %>%
+      sort(decreasing = TRUE) %>%
+      data.frame(word = names(.), freq = .) %>%
+      tbl_df() %>%
+      arrange(desc(freq))
+    
+    d3wordcloud(d$word, d$freq, font = "Impact", rotate.min = 45, rotate.max = 45)
   })
   
   #### Titles tabpanel ####

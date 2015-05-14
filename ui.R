@@ -14,7 +14,12 @@ fluidPage(
     navbarPage(
       title = "KanguroVentas", id = "navigabar",
       position = "fixed-top", fluid = TRUE, collapsible = TRUE,
-      tabPanel(h5("Inicio"), hr(), uiOutput("home")),
+      tabPanel(h5("Inicio"), hr(),
+               fluidRow(
+                 column(8, uiOutput("carrousel")),
+                 column(4, d3wordcloudOutput("wc"))
+                 )
+               ),
       tabPanel(h5("Tienda"), hr(),
                fluidRow(
                  id = "main",

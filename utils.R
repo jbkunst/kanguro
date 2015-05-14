@@ -43,7 +43,9 @@ get_data_real <- function(){
     mutate(name        = name         %>% to_title  %>% str_trim %>% str_rm_ws,
            category    = category     %>% to_title  %>% str_trim %>% str_rm_ws,
            description = description  %>% first_upper  %>% str_rm_ws) %>%
-    filter(!is.na(name)) %>%    
+    filter(!is.na(name)) %>% 
+    filter(category != "") %>% 
+    filter(!is.na(category)) %>% 
     tbl_df
 }
 
