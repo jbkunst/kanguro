@@ -46,6 +46,8 @@ get_data_real <- function(){
     
   data <- left_join(data, imgs, by = "id")
   
+  
+  
   data <- data %>% 
     filter(!is.na(name)) %>% 
     filter(!is.na(category)) %>% 
@@ -53,6 +55,10 @@ get_data_real <- function(){
   
   data <- data %>% 
     mutate(image = ifelse(is.na(image), sprintf("http://placehold.it/200x200&text=%s", name), image))
+  
+  data <- data %>% 
+    mutate(description = paste(description, image),
+           image = "lala")
   
   data
 }
