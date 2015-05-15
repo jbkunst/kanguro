@@ -17,7 +17,8 @@ fluidPage(
       tabPanel(h5("Inicio"), hr(),
                fluidRow(
                  column(8, uiOutput("carrousel")),
-                 column(4, d3wordcloudOutput("wc"))
+                 column(4, d3wordcloudOutput("wc")),
+                 column(2, includeHTML("html/facebook.html"))
                  )
                ),
       tabPanel(h5("Tienda"), hr(),

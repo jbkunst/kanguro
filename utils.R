@@ -55,9 +55,6 @@ get_data_real <- function(){
   data <- data %>% 
     mutate(image = ifelse(is.na(image), sprintf("http://placehold.it/200x200&text=%s", name), image))
   
-  data <- data %>% 
-    mutate(description = paste(description, image))
-  
   data
 }
 
