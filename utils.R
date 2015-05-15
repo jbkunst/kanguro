@@ -40,13 +40,12 @@ get_data_real <- function(){
     
   imgs <- dir("www/img/prods/", full.names = TRUE, all.files = TRUE, no.. = TRUE) %>% 
     str_replace("www/", "") %>% 
+    gsub("//", "/", .) %>% 
     data_frame(image = .) %>% 
     mutate(id = str_extract(image, "\\d+") %>% as.numeric()) %>% 
     arrange(id)
     
   data <- left_join(data, imgs, by = "id")
-  
-  
   
   data <- data %>% 
     filter(!is.na(name)) %>% 
@@ -57,8 +56,7 @@ get_data_real <- function(){
     mutate(image = ifelse(is.na(image), sprintf("http://placehold.it/200x200&text=%s", name), image))
   
   data <- data %>% 
-    mutate(description = paste(description, image),
-           image = "lala")
+    mutate(description = paste(description, image))
   
   data
 }
