@@ -27,7 +27,7 @@ fluidPage(
                  column(class = "clearfix",
                         width = 3, id = "filters",
                         radioButtons("category", "Categorías", choices = categories),
-                        sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre = "$", sep = ".", width = "100%"),
+                        sliderInput("price_range", "Precio",  min = 0, max = 1e9, value = c(0, 1e9), pre = "$", sep = ".", width = "100%", step = 1000),
                         actionButton("price_reset", "resetear precios", class = "btn-xs small pull-right btn-material-purple"),
                         br(),
                         br(),

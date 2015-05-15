@@ -3,8 +3,6 @@
 
 shinyServer(function(input, output, session) {
   
-  session$cart <- c()
-  
   data <- get_data_real()
   
   values <- reactiveValues(cart = c(), prod_id = 1)
@@ -16,8 +14,10 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$addtocart, {
-    session$cart  <- c(session$cart, isolate(str_extract(input$prod_id, "\\d+")))
-    values$cart <- session$cart
+    message(sprintf("LOG time: %s | action: %s | element: %s"
+                    , Sys.time(), "Click add to cart", input$prod_id))
+    values$cart <- c(values$cart, input$prod_id)
+    print(values$cart)
   })
   
   observeEvent(input$makeorder, {
@@ -52,13 +52,13 @@ shinyServer(function(input, output, session) {
     
     data_sort <- data_category()
     
-    if(input$sortby == "pl"){
+    if(input$sortby == "pl") {
       data_sort <- data_sort  %>% arrange(price)
-    } else if (input$sortby == "ph"){
+    } else if (input$sortby == "ph") {
       data_sort <- data_sort  %>% arrange(desc(price))
-    } else if (input$sortby == "lh"){
+    } else if (input$sortby == "lh") {
       data_sort <- data_sort  %>% arrange(stock)
-    } else if (input$sortby == "sh"){
+    } else if (input$sortby == "sh") {
       data_sort <- data_sort  %>% arrange(desc(stock))
     }
     
@@ -160,21 +160,21 @@ shinyServer(function(input, output, session) {
     
     products <- data_keyword()
     
-    if(nrow(products)==0){
+    if (nrow(products) == 0) {
       output <- template_info_quote("No existen productos con tales criterios de búsqueda.")
     } else {     
       output <- llply(seq(nrow(products)), function(x){
         product_template_grid(products[x,])
         })
       
-      output <- do.call(function(...){ div(class="row-fluid", ...)}, output)
+      output <- do.call(function(...){ div(class = "row-fluid", ...)}, output)
     }
     list(output, tags$script("$(\".imgLiquid\").imgLiquid();"))
   })
   
   output$producttab <- renderUI({
     
-    if(!is.null(values$prod_id)){
+    if (!is.null(values$prod_id)) {
       product <- data_product()
       output <- product_detail_template(product)
     } else {
@@ -185,7 +185,7 @@ shinyServer(function(input, output, session) {
   
   output$carttab <- renderUI({
     
-    if(length(values$cart)==0){
+    if (length(values$cart) == 0) {
       output <- template_info_quote("Todavía no hechas nada al carrito!")
     } else {     
       dcart <- data_cart()
