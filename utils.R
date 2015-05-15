@@ -30,23 +30,31 @@ get_data_sample <- function(){
 }
 
 get_data_real <- function(){
-#   data <- register_ss("KanguroProds") %>%
-#     get_via_csv(fileEncoding = "UTF-8") %>%
+  
   data  <- "https://docs.google.com/spreadsheets/d/1g7l4DOy_lyjAFSQaqzbZtOuTuh6x-vZCPIPAWfL0yJ0/export?format=csv&id=1g7l4DOy_lyjAFSQaqzbZtOuTuh6x-vZCPIPAWfL0yJ0&gid=0" %>% 
     read_csv() %>% 
-    mutate(image = ifelse(is.na(image),
-                          sprintf("http://placehold.it/200x200&text=%s", name),
-                          image),
-           description = ifelse(is.na(description),
-                                "Sin descripción.",
-                                description)) %>%
+    mutate(description = ifelse(is.na(description), "Sin descripción todavia :P.", description)) %>%
     mutate(name        = name         %>% to_title  %>% str_trim %>% str_rm_ws,
            category    = category     %>% to_title  %>% str_trim %>% str_rm_ws,
-           description = description  %>% first_upper  %>% str_rm_ws) %>%
+           description = description  %>% first_upper  %>% str_rm_ws)
+    
+  imgs <- dir("www/img/prods/", full.names = TRUE, all.files = TRUE, no.. = TRUE) %>% 
+    str_replace("www/", "") %>% 
+    data_frame(image = .) %>% 
+    mutate(id = str_extract(image, "\\d+") %>% as.numeric()) %>% 
+    arrange(id)
+    
+  data <- left_join(data, imgs, by = "id")
+  
+  data <- data %>% 
     filter(!is.na(name)) %>% 
-    filter(category != "") %>% 
     filter(!is.na(category)) %>% 
-    tbl_df
+    filter(!is.na(price))
+  
+  data <- data %>% 
+    mutate(image = ifelse(is.na(image), sprintf("http://placehold.it/200x200&text=%s", name), image))
+  
+  data
 }
 
 product_template_grid <- function(x){
